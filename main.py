@@ -109,27 +109,4 @@ def main():
 
 if __name__ == "__main__":
     keep_alive()
-    main()            os.remove(photo_path)
-
-# 3. Text Handler
-async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Paps, screenshot ng profile ang i-send mo, hindi text. Hehe!")
-
-def main():
-    # Make sure na may value ang TOKEN para hindi mag-crash
-    if not TELEGRAM_TOKEN:
-        print("Error: Walang TELEGRAM_TOKEN sa Env Vars!")
-        return
-
-    application = Application.builder().token(TELEGRAM_TOKEN).build()
-    
-    application.add_handler(CommandHandler("start", start))
-    application.add_handler(MessageHandler(filters.PHOTO, handle_image))
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text))
-    
-    print("Bot is starting...")
-    application.run_polling()
-
-if __name__ == "__main__":
-    keep_alive()
     main()
