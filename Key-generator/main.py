@@ -47,7 +47,7 @@ random_keys = {}        # random_key -> expire
 # ===== UTILS =====
 def generate_key(length=8):
     chars = string.ascii_letters + string.digits
-    return "Kaze-" + ''.join(random.choice(chars) for _ in range(length))
+    return "Kaze-FreeKey" + ''.join(random.choice(chars) for _ in range(length))
 
 def duration_from_code(code):
     code = code.lower()
