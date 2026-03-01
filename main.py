@@ -8,6 +8,18 @@ import logging
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 
+# ===== WEBKEEP ALIVE =====
+app_web = Flask(__name__)
+OWNER_ID = int(os.getenv("OWNER_ID", "0"))
+
+@app_web.route("/")
+def home():
+    return "Bot is online!"
+
+def keep_alive():
+    port = int(os.environ.get("PORT", 10000))
+    Thread(target=lambda: app_web.run(host="0.0.0.0", port=port)).start()
+    
 # SETUP LOGGING
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
